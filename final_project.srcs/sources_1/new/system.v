@@ -25,6 +25,7 @@ module system #(
 wire [NUM_CHARS * CHAR_WIDTH - 1:0] characters;
 wire [CHAR_WIDTH - 1:0] character;
 wire inputReady;
+wire uartInputReady;
 
 assign JAOut = RsTx;
 
@@ -45,7 +46,7 @@ uartInput uartInput (
 
 uartInput uartJaInput (
 	.character(character),
-	.outputReady(inputReady),
+	.outputReady(uartInputReady),
 	.rx(JAIn),
 	.clk(clk)
 );
@@ -57,6 +58,8 @@ uartOutput uartOutput (
 	.clk(clk)
 );
 
+assign allInputReady = inputReady || uartInputReady;
+
 inputBuffer #(
 	.NUM_CHARS(NUM_CHARS),
 	.CHAR_WIDTH(CHAR_WIDTH)
@@ -64,7 +67,7 @@ inputBuffer #(
 	.characters(characters),
 	.character(character),
 	.rst(btnL),
-	.inputReady(inputReady)
+	.inputReady(allInputReady)
 );
 
 vga #(
