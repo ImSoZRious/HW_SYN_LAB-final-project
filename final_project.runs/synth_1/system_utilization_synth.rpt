@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1.1 (lin64) Build 5094488 Fri Jun 14 08:57:50 MDT 2024
-| Date         : Sun Dec  8 20:59:06 2024
+| Date         : Mon Dec  9 08:41:55 2024
 | Host         : nixos running 64-bit NixOS 24.11 (Vicuna)
 | Command      : report_utilization -file system_utilization_synth.rpt -pb system_utilization_synth.pb
 | Design       : system
@@ -34,8 +34,8 @@ Table of Contents
 | Slice LUTs*             | 2460 |     0 |          0 |     20800 | 11.83 |
 |   LUT as Logic          | 2460 |     0 |          0 |     20800 | 11.83 |
 |   LUT as Memory         |    0 |     0 |          0 |      9600 |  0.00 |
-| Slice Registers         |  304 |     0 |          0 |     41600 |  0.73 |
-|   Register as Flip Flop |  304 |     0 |          0 |     41600 |  0.73 |
+| Slice Registers         |  297 |     0 |          0 |     41600 |  0.71 |
+|   Register as Flip Flop |  297 |     0 |          0 |     41600 |  0.71 |
 |   Register as Latch     |    0 |     0 |          0 |     41600 |  0.00 |
 | F7 Muxes                |  302 |     0 |          0 |     16300 |  1.85 |
 | F8 Muxes                |   81 |     0 |          0 |      8150 |  0.99 |
@@ -58,9 +58,9 @@ Warning! For any ECO changes, please run place_design if there are unplaced inst
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
 | 0     |          Yes |           - |          Set |
-| 0     |          Yes |           - |        Reset |
+| 199   |          Yes |           - |        Reset |
 | 0     |          Yes |         Set |            - |
-| 304   |          Yes |       Reset |            - |
+| 98    |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -93,7 +93,7 @@ Warning! For any ECO changes, please run place_design if there are unplaced inst
 +-----------------------------+------+-------+------------+-----------+-------+
 |          Site Type          | Used | Fixed | Prohibited | Available | Util% |
 +-----------------------------+------+-------+------------+-----------+-------+
-| Bonded IOB                  |   42 |     0 |          0 |       106 | 39.62 |
+| Bonded IOB                  |   43 |     0 |          0 |       106 | 40.57 |
 | Bonded IPADs                |    0 |     0 |          0 |        10 |  0.00 |
 | Bonded OPADs                |    0 |     0 |          0 |         4 |  0.00 |
 | PHY_CONTROL                 |    0 |     0 |          0 |         5 |  0.00 |
@@ -152,19 +152,20 @@ Warning! For any ECO changes, please run place_design if there are unplaced inst
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| LUT6     | 1868 |                 LUT |
-| LUT5     |  307 |                 LUT |
-| FDRE     |  304 |        Flop & Latch |
+| LUT6     | 1870 |                 LUT |
+| LUT5     |  305 |                 LUT |
 | MUXF7    |  302 |               MuxFx |
-| LUT4     |  172 |                 LUT |
-| LUT3     |   87 |                 LUT |
+| FDCE     |  199 |        Flop & Latch |
+| LUT4     |  169 |                 LUT |
+| FDRE     |   98 |        Flop & Latch |
+| LUT3     |   88 |                 LUT |
+| LUT2     |   82 |                 LUT |
 | MUXF8    |   81 |               MuxFx |
-| LUT2     |   81 |                 LUT |
 | CARRY4   |   64 |          CarryLogic |
 | LUT1     |   22 |                 LUT |
 | OBUFT    |   16 |                  IO |
 | OBUF     |   15 |                  IO |
-| IBUF     |   11 |                  IO |
+| IBUF     |   12 |                  IO |
 | BUFG     |    2 |               Clock |
 +----------+------+---------------------+
 

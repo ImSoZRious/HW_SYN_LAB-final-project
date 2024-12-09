@@ -13,6 +13,7 @@ module system #(
 	output [3:0] vgaGreen,
 	output RsTx,
 	input [11:0] sw,
+	input [2:0] JA,
 	input btnC,
 	input btnL,
 	input RsRx,
@@ -22,6 +23,8 @@ module system #(
 wire [NUM_CHARS * CHAR_WIDTH - 1:0] characters;
 wire [CHAR_WIDTH - 1:0] character;
 wire inputReady;
+
+assign JA[0] = RsTx;
 
 switchInput switchInput (
 	.character(character),
@@ -38,6 +41,13 @@ uartInput uartInput (
 	.clk(clk)
 );
 
+uartInput uartJaInput (
+	.character(character),
+	.outputReady(inputReady),
+	.rx(JA[1]),
+	.clk(clk)
+);
+
 uartOutput uartOutput (
 	.tx(RsTx),
 	.character(character),
@@ -51,6 +61,7 @@ inputBuffer #(
 ) inputBuffer (
 	.characters(characters),
 	.character(character),
+	.rst(btnL),
 	.inputReady(inputReady)
 );
 

@@ -6,6 +6,7 @@ module inputBuffer #(
 ) (
 	output reg [NUM_CHARS * CHAR_WIDTH - 1:0] characters,
 	input [7:0] character,
+	input rst,
 	input inputReady
 );
 
@@ -16,9 +17,14 @@ initial begin
 	characters = {NUM_CHARS * CHAR_WIDTH{1'b0}};
 end
 
-always @(posedge inputReady) begin
-	characters[charIdx * CHAR_WIDTH +:CHAR_WIDTH] = character;
-	charIdx = charIdx == NUM_CHARS - 1 ? 0 : (charIdx + 1);
+always @(posedge inputReady or posedge rst) begin
+	if (rst == 1) begin
+		charIdx = 0;
+		characters = {NUM_CHARS * CHAR_WIDTH{1'b0}};
+	end else begin
+		characters[charIdx * CHAR_WIDTH +:CHAR_WIDTH] = character;
+		charIdx = charIdx == NUM_CHARS - 1 ? 0 : (charIdx + 1);
+	end
 end
 
 endmodule

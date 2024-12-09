@@ -44,7 +44,7 @@ always @(posedge clk) begin
 		occupyCharacter = 0;
 		occupyOutputReady = 0;
 	end
-	
+
 	prevBtn = submitBtn;
 end
 
