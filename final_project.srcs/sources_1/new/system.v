@@ -26,7 +26,7 @@ wire [NUM_CHARS * CHAR_WIDTH - 1:0] characters;
 wire [CHAR_WIDTH - 1:0] character;
 wire inputReady;
 
-assign JA[0] = RsTx;
+assign JAOut = RsTx;
 
 switchInput switchInput (
 	.character(character),
@@ -46,7 +46,7 @@ uartInput uartInput (
 uartInput uartJaInput (
 	.character(character),
 	.outputReady(inputReady),
-	.rx(JA[1]),
+	.rx(JAIn),
 	.clk(clk)
 );
 
